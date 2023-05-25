@@ -1,0 +1,13 @@
+$wordleLogo: url("../images/wordle-icon.svg");
+$startBackground: #e3e3e1;
+$modalBackground: #121213;
+
+@mixin lightMode {
+    background-color: white;
+    color: black;
+}
+
+@mixin darkMode {
+    background-color: #3a3a3c;
+    color: white;
+}
