@@ -1,25 +1,58 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import { Route, Routes } from "react-router-dom";
+import Main from "./pages/Main";
+import Game from "./pages/Game";
+import Login from "./pages/Login";
+import PrivateRoute from "./components/PrivateRoute";
+import "./assets/css/App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default function App() {
+    const [jwt, setJwt] = useState(() => {
+        const savedValue = localStorage.getItem("jwt");
+        return JSON.parse(savedValue) || "";
+    });
+
+    useEffect(() => {
+        localStorage.setItem("jwt", JSON.stringify(jwt));
+    }, [jwt]);
+
+    function loginUser(loginData)
+    {
+        const options = {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(loginData)
+        };
+
+        fetch("http://localhost:5000/auth/login", options)
+        .then(resp => {
+            if(resp.ok)
+                return resp.json();
+            return resp.json().then(response => { throw new Error(response.message) });
+        })
+        .then(resp => setJwt(resp.jwt))
+        .catch(err => alert(err));
+    }
+
+    function logout()
+    {
+        setJwt("");
+        localStorage.removeItem("jwt");
+    }
+
+    return (
+        <>
+            <Routes>
+                <Route path="/" element={ <Main jwt={jwt} logout={logout} /> } />
+                
+                <Route path="/play" element={ <Game logout={logout} /> } />
+
+                <Route path="/login" element={
+                    <PrivateRoute type="login" jwt={jwt}>
+                        <Login loginUser={loginUser} />
+                    </PrivateRoute>
+                } />
+            </Routes>
+        </>
+    );
 }
-
-export default App;
