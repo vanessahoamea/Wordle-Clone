@@ -1,13 +1,15 @@
+//media
 $wordleLogo: url("../images/wordle-icon.svg");
-$startBackground: #e3e3e1;
-$modalBackground: #121213;
 
-@mixin lightMode {
-    background-color: white;
-    color: black;
-}
+//colors
+$gray: #3a3a3c;
+$green: #538d4e;
+$yellow: #b59f3b;
 
-@mixin darkMode {
-    background-color: #3a3a3c;
-    color: white;
+//functions
+@mixin adjustForm($screenWidth) {
+    $newWidth: calc((900 - $screenWidth) / 20);
+    .auth-form {
+        width: 55vw + $newWidth;
+    }
 }

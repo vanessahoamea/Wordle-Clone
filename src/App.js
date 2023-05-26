@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Main from "./pages/Main";
 import Game from "./pages/Game";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 import PrivateRoute from "./components/PrivateRoute";
 import "./assets/css/App.css";
 
@@ -48,8 +49,14 @@ export default function App() {
                 <Route path="/play" element={ <Game logout={logout} /> } />
 
                 <Route path="/login" element={
-                    <PrivateRoute type="login" jwt={jwt}>
+                    <PrivateRoute jwt={jwt}>
                         <Login loginUser={loginUser} />
+                    </PrivateRoute>
+                } />
+
+                <Route path="/register" element={
+                    <PrivateRoute jwt={jwt}>
+                        <Register />
                     </PrivateRoute>
                 } />
             </Routes>
