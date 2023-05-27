@@ -1,0 +1,48 @@
+@import "_variables";
+
+.navbar {
+    padding: 15px 20px;
+    border-bottom: 1px solid $gray;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    & h1 {
+        cursor: context-menu;
+    }
+
+    & i {
+        font-size: 1.5em;
+        cursor: pointer;
+    }
+}
+
+.grid {
+    margin: 10px 0;
+}
+
+.row {
+    @include flexCenter;
+}
+
+.guess-tile {
+    @include flexCenter;
+    width: 50px;
+    height: 50px;
+    border: 2px solid $gray;
+    margin: 3px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.gray-tile {
+    background-color: $gray;
+}
+
+.green-tile {
+    background-color: $green;
+}
+
+.yellow-tile {
+    background-color: $yellow;
+}

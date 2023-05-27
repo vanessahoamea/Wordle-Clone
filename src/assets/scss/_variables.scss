@@ -7,6 +7,12 @@ $green: #538d4e;
 $yellow: #b59f3b;
 
 //functions
+@mixin flexCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 @mixin adjustForm($screenWidth) {
     $newWidth: calc((900 - $screenWidth) / 20);
     .auth-form {

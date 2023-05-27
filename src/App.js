@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import Main from "./pages/Main";
 import Game from "./pages/Game";
 import Login from "./pages/Login";
@@ -12,6 +12,7 @@ export default function App() {
         const savedValue = localStorage.getItem("jwt");
         return JSON.parse(savedValue) || "";
     });
+    const navigate = useNavigate();
 
     useEffect(() => {
         localStorage.setItem("jwt", JSON.stringify(jwt));
@@ -41,12 +42,20 @@ export default function App() {
         localStorage.removeItem("jwt");
     }
 
+    function redirect(path)
+    {
+        navigate(path);
+    }
+
+
     return (
         <>
             <Routes>
                 <Route path="/" element={ <Main jwt={jwt} logout={logout} /> } />
                 
-                <Route path="/play" element={ <Game logout={logout} /> } />
+                <Route path="/play" element={
+                    <Game jwt={jwt} logout={logout} redirect={redirect} />
+                } />
 
                 <Route path="/login" element={
                     <PrivateRoute jwt={jwt}>
