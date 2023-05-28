@@ -1,4 +1,4 @@
-@import "_variables";
+@import "_variables", "_animations";
 
 .navbar {
     padding: 15px 20px;
@@ -23,6 +23,8 @@
 
 .row {
     @include flexCenter;
+    width: 80%;
+    margin: 0 auto;
 }
 
 .guess-tile {
@@ -33,16 +35,71 @@
     margin: 3px;
     text-transform: uppercase;
     font-weight: bold;
+    cursor: context-menu;
+    user-select: none;
+}
+
+@include flipAnimationDelay;
+
+.gray-tile, .green-tile, .yellow-tile {
+    animation: flip-tile 0.5s ease forwards;
 }
 
 .gray-tile {
-    background-color: $gray;
+    --background-color: #{$gray};
 }
 
 .green-tile {
-    background-color: $green;
+    --background-color: #{$green};
 }
 
 .yellow-tile {
+    --background-color: #{$yellow};
+}
+
+.current-row > .new-letter {
+    animation: type-effect 0.1s ease-in-out forwards;
+    border-color: #565758;
+}
+
+.invalid-guess {
+    animation: shake 0.2s ease forwards;
+}
+
+.key {
+    @include flexCenter;
+    background-color: #818384;
+    text-transform: uppercase;
+    font-weight: bold;
+    min-width: 40px;
+    height: 50px;
+    padding: 10px;
+    border-radius: 3px;
+    cursor: pointer;
+
+    &pad {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        max-width: 500px;
+        margin: 0 auto 20px auto;
+
+        &-row {
+            @include flexCenter;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+    }
+}
+
+.gray-key {
+    background-color: $gray;
+}
+
+.green-key {
+    background-color: $green;
+}
+
+.yellow-key {
     background-color: $yellow;
 }

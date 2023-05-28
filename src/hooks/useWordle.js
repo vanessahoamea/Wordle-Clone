@@ -73,15 +73,16 @@ export default function useWordle(solution, setShowStats)
         {
             if(turn > 5 || currentGuess.length < 5 || guessHistory.includes(currentGuess))
             {
-                if(document.getElementsByClassName("current-row")[0])
-                    document.getElementsByClassName("current-row")[0].classList.add("invalid-guess");
+                if(document.querySelector(".current-row"))
+                    document.querySelector(".current-row").classList.add("invalid-guess");
+                
+                setTimeout(() => {
+                    document.querySelector(".current-row").classList.remove("invalid-guess");
+                }, 500);
                 return;
             }
             addGuess();
         }
-
-        if(document.getElementsByClassName("current-row")[0])
-            document.getElementsByClassName("current-row")[0].classList.remove("invalid-guess");
     }
 
     return { turn, currentGuess, allGuesses, usedKeys, gameOver, handleKeyup };

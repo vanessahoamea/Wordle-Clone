@@ -6,7 +6,7 @@ $gray: #3a3a3c;
 $green: #538d4e;
 $yellow: #b59f3b;
 
-//functions
+//mixins
 @mixin flexCenter {
     display: flex;
     justify-content: center;
@@ -17,5 +17,20 @@ $yellow: #b59f3b;
     $newWidth: calc((900 - $screenWidth) / 20);
     .auth-form {
         width: 55vw + $newWidth;
+    }
+}
+
+@mixin flipAnimation($degrees, $backgroundColor, $border) {
+    transform: rotateX($degrees);
+    background-color: $backgroundColor;
+    border: $border;
+}
+
+@mixin flipAnimationDelay() {
+    @each $child in (2, 3, 4, 5) {
+        $delay: calc($child * 0.2);
+        .guess-tile:nth-child(#{$child}) {
+            animation-delay: 0s + $delay;
+        }
     }
 }
