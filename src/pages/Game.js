@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChartSimple, faRightFromBracket, faRightToBracket } from "@fortawesome/free-solid-svg-icons";
 import Wordle from "../components/Wordle";
 import "../assets/css/Game.css";
 
@@ -22,16 +24,21 @@ export default function Game(props)
             <header className="navbar">
                 {
                     props.jwt
-                    ? <i className="fa-solid fa-right-from-bracket" title="Log out" onClick={props.logout}></i>
-                    : <i className="fa-solid fa-right-to-bracket" title="Log in" onClick={() => props.redirect("login")}></i>
+                    ? <FontAwesomeIcon icon={faRightFromBracket} title="Log out" onClick={props.logout} size="xl" />
+                    : <FontAwesomeIcon icon={faRightToBracket} title="Log in" onClick={() => props.redirect("login")} size="xl" />
                 }
                 <h1>Wordle</h1>
-                <i className="fa-solid fa-chart-simple" title="Stats" onClick={() => setShowStats(true)}></i>
+                <FontAwesomeIcon icon={faChartSimple} title="Stats" onClick={() => setShowStats(true)} size="xl" />
             </header>
 
             {
                 solution &&
-                <Wordle solution={solution} setShowStats={setShowStats} />
+                <Wordle 
+                    jwt={props.jwt} 
+                    solution={solution} 
+                    showStats={showStats}
+                    setShowStats={setShowStats}
+                />
             }
         </>
     );

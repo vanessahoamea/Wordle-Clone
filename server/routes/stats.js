@@ -35,8 +35,15 @@ router.post("/", async (req, res) => {
                 return;
             }
             
-            for(const [key, value] of Object.entries(req.body))
-                data[key] += value;
+            const tries = req.body.turn == 1 ? "one_try" : req.body.turn == 2 ? "two_tries" 
+                        : req.body.turn == 3 ? "three_tries" : req.body.turn == 4 ? "four_tries"
+                        : req.body.turn == 5 ? "five_tries" : "six_tries";
+            if(req.body.game_over == 1)
+            {
+                data[tries]++;
+                data.games_won++;
+            }
+            data.games_played++;
             await data.save();
 
             res.send(data);

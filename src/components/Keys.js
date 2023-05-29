@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faDeleteLeft } from "@fortawesome/free-solid-svg-icons";
 
 export default function Keys(props)
 {
@@ -24,7 +26,7 @@ export default function Keys(props)
             const color = props.usedKeys[keys[i]];
             result.push(
                 <div key={i} className={`key ${color}-key`} onClick={() => pressKey(keys[i])}>
-                    {i < 27 ? keys[i] : <i className="fa-solid fa-delete-left"></i>}
+                    {i < 27 ? keys[i] : <FontAwesomeIcon icon={faDeleteLeft} />}
                 </div>
             );
         }

@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import useWordle from "../hooks/useWordle";
 import Grid from "./Grid";
 import Keys from "./Keys";
+import Stats from "./Stats";
 
 export default function Wordle(props)
 {
@@ -26,6 +27,17 @@ export default function Wordle(props)
                 gameOver={wordle.gameOver}
                 handleKeyup={wordle.handleKeyup}
             />
+            {
+                props.showStats && 
+                <Stats 
+                    jwt={props.jwt}
+                    solution={props.solution}
+                    turn={wordle.turn}
+                    gameOver={wordle.gameOver}
+                    showStats={props.setShowStats}
+                    setShowStats={props.setShowStats}
+                />
+            }
         </>
     );
 }

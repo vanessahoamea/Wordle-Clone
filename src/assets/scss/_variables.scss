@@ -6,6 +6,9 @@ $gray: #3a3a3c;
 $green: #538d4e;
 $yellow: #b59f3b;
 
+$modalBackground: rgba(0,0,0,0.4);
+$modalContent: #323235;
+
 //mixins
 @mixin flexCenter {
     display: flex;
