@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function useWordle(solution, setShowStats)
+export default function useWordle(solution, showStats)
 {
     const [turn, setTurn] = useState(0);
     const [currentGuess, setCurrentGuess] = useState("");
@@ -35,12 +35,12 @@ export default function useWordle(solution, setShowStats)
         if(currentGuess == solution)
         {
             setGameOver(1);
-            setTimeout(() => setShowStats(true), 2000);
+            setTimeout(() => showStats(true), 2000);
         }
         else if(turn == 5)
         {
             setGameOver(-1);
-            setTimeout(() => setShowStats(true), 2000);
+            setTimeout(() => showStats(true), 2000);
         }
 
         //update board state

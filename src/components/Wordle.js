@@ -6,7 +6,7 @@ import Stats from "./Stats";
 
 export default function Wordle(props)
 {
-    const wordle = useWordle(props.solution, props.setShowStats);
+    const wordle = useWordle(props.solution, props.showStats);
 
     useEffect(() => {
         if(wordle.gameOver == 0)
@@ -27,17 +27,13 @@ export default function Wordle(props)
                 gameOver={wordle.gameOver}
                 handleKeyup={wordle.handleKeyup}
             />
-            {
-                props.showStats && 
-                <Stats 
-                    jwt={props.jwt}
-                    solution={props.solution}
-                    turn={wordle.turn}
-                    gameOver={wordle.gameOver}
-                    showStats={props.setShowStats}
-                    setShowStats={props.setShowStats}
-                />
-            }
+            <Stats 
+                jwt={props.jwt}
+                solution={props.solution}
+                turn={wordle.turn}
+                gameOver={wordle.gameOver}
+                showStats={props.showStats}
+            />
         </>
     );
 }

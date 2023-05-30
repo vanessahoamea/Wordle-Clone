@@ -23,7 +23,7 @@ export default function Stats(props)
     }, []);
 
     useEffect(() => {
-        if(props.gameOver == 0)
+        if(props.gameOver == 0 || props.jwt == "")
             return;
 
         fetch("http://localhost:5000/stats", { 
@@ -42,13 +42,14 @@ export default function Stats(props)
                 return resp.json();
             return resp.json().then(response => { throw new Error(response.message) });
         })
+        .then(resp => setStats(resp))
         .catch(err => console.log(err));
     }, [props.gameOver]);
 
     return (
         <div id="modal">
             <div className="modal-content">
-                <div className="close" onClick={() => props.setShowStats(false)}>
+                <div className="close" onClick={() => props.showStats(false)}>
                     <FontAwesomeIcon icon={faX} />
                 </div>
 
@@ -79,7 +80,7 @@ export default function Stats(props)
                         </div>
 
                         <p className="modal-text">Guess distribution</p>
-                        <div>
+                        <div style={{height: "150px", width: "300px"}}>
                             <BarChart stats={stats} />
                         </div>
                     </>

@@ -7,7 +7,6 @@ import "../assets/css/Game.css";
 export default function Game(props)
 {
     const [solution, setSolution] = useState();
-    const [showStats, setShowStats] = useState(false);
 
     useEffect(() => {
         fetch("http://localhost:5000/word")
@@ -19,6 +18,12 @@ export default function Game(props)
         .catch(_ => setSolution("debug"));
     }, []);
 
+    function showStats(show)
+    {
+        const display = show ? "block" : "none";
+        document.getElementById("modal").style.display = display;
+    }
+
     return (
         <>
             <header className="navbar">
@@ -28,7 +33,7 @@ export default function Game(props)
                     : <FontAwesomeIcon icon={faRightToBracket} title="Log in" onClick={() => props.redirect("login")} size="xl" />
                 }
                 <h1>Wordle</h1>
-                <FontAwesomeIcon icon={faChartSimple} title="Stats" onClick={() => setShowStats(true)} size="xl" />
+                <FontAwesomeIcon icon={faChartSimple} title="Stats" onClick={() => showStats(true)} size="xl" />
             </header>
 
             {
@@ -37,7 +42,6 @@ export default function Game(props)
                     jwt={props.jwt} 
                     solution={solution} 
                     showStats={showStats}
-                    setShowStats={setShowStats}
                 />
             }
         </>

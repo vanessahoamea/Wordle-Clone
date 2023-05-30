@@ -1,6 +1,7 @@
 @import "_variables";
 
 #modal {
+    display: none;
     background-color: $modalBackground;
     position: fixed;
     width: 100%;
