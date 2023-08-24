@@ -31,7 +31,7 @@ export default function Login(props)
                 <input type="password" id="password" value={loginData.password} onChange={handleChange}></input>
             </form>
 
-            <button className="auth-button" onClick={() => props.loginUser(loginData)}>Log in</button>
+            <button className="auth-button" data-test="login-button" onClick={() => props.loginUser(loginData)}>Log in</button>
 
             <p className="bottom-text">Don't have an account yet? <Link to="/register">Register now</Link></p>
         </div>

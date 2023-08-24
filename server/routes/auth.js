@@ -44,7 +44,7 @@ router.post("/register", async (req, res) => {
         password: req.body.password
     });
 
-    if(user.email == undefined || user.password == undefined)
+    if(user.email == "" || user.password == "")
     {
         res.status(400);
         res.send({"message": "E-mail and password are required."});
