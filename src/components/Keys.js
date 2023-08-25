@@ -25,7 +25,7 @@ export default function Keys(props)
         {
             const color = props.usedKeys[keys[i]];
             result.push(
-                <div key={i} className={`key ${color}-key`} onClick={() => pressKey(keys[i])}>
+                <div data-test={`key-${keys[i]}`} key={i} className={`key ${color}-key`} onClick={() => pressKey(keys[i])}>
                     {i < 27 ? keys[i] : <FontAwesomeIcon icon={faDeleteLeft} />}
                 </div>
             );

@@ -40,6 +40,7 @@ export default function App() {
     {
         setJwt("");
         localStorage.removeItem("jwt");
+        location.reload();
     }
 
     function redirect(path)
