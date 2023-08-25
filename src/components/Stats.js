@@ -49,7 +49,7 @@ export default function Stats(props)
     return (
         <div id="modal">
             <div className="modal-content">
-                <div className="close" onClick={() => props.showStats(false)}>
+                <div data-test="close-button" className="close" onClick={() => props.showStats(false)}>
                     <FontAwesomeIcon icon={faX} />
                 </div>
 
@@ -70,7 +70,7 @@ export default function Stats(props)
                         <p className="modal-text">Statistics</p>
                         <div className="modal-row">
                             <div className="modal-info">
-                                <p>{stats.games_played}</p>
+                                <p data-test="games-played">{stats.games_played}</p>
                                 <p>Played</p>
                             </div>
                             <div className="modal-info">

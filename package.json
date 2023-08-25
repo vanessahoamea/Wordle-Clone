@@ -48,6 +48,8 @@
     ]
   },
   "devDependencies": {
+    "cypress": "^12.17.4",
+    "mongodb": "^5.8.1",
     "nodemon": "^2.0.22"
   }
 }

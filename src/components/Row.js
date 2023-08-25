@@ -19,7 +19,7 @@ export default function Row(props)
     {
         const lettersArray = [...props.currentGuess];
         return (
-            <div className="row current-row">
+            <div className="row current-row free-row">
             {
                 lettersArray.map((letter, index) => {
                     return <div key={index} className="guess-tile new-letter">{letter}</div>
@@ -36,7 +36,7 @@ export default function Row(props)
 
     //showing a free row
     return (
-        <div className="row">
+        <div className="row free-row">
             <div className="guess-tile"></div>
             <div className="guess-tile"></div>
             <div className="guess-tile"></div>

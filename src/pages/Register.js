@@ -49,7 +49,7 @@ export default function Register(props)
                 <input type="password" id="password" value={registerData.password} onChange={handleChange}></input>
             </form>
 
-            <button className="auth-button" onClick={registerUser}>Register</button>
+            <button className="auth-button" data-test="register-button" onClick={registerUser}>Register</button>
 
             <p className="bottom-text">Already have an account? <Link to="/login">Log in</Link></p>
         </div>

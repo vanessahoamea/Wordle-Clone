@@ -13,7 +13,6 @@ export default function Game(props)
         .then(resp => resp.json())
         .then(resp => {
             setSolution(resp.word);
-            console.log(resp.word); //for testing
         })
         .catch(_ => setSolution("debug"));
     }, []);
@@ -29,12 +28,19 @@ export default function Game(props)
             <header className="navbar">
                 {
                     props.jwt
-                    ? <FontAwesomeIcon icon={faRightFromBracket} title="Log out" onClick={props.logout} size="xl" />
-                    : <FontAwesomeIcon icon={faRightToBracket} title="Log in" onClick={() => props.redirect("login")} size="xl" />
+                    ? <FontAwesomeIcon data-test="logout-button" icon={faRightFromBracket} title="Log out" onClick={props.logout} size="xl" />
+                    : <FontAwesomeIcon data-test="login-button" icon={faRightToBracket} title="Log in" onClick={() => props.redirect("login")} size="xl" />
                 }
                 <h1>Wordle</h1>
-                <FontAwesomeIcon icon={faChartSimple} title="Stats" onClick={() => showStats(true)} size="xl" />
+                <FontAwesomeIcon data-test="stats-button" icon={faChartSimple} title="Stats" onClick={() => showStats(true)} size="xl" />
             </header>
+
+            {
+                solution &&
+                <p style={{textAlign: "center", marginTop: "10px"}}>
+                    Your word is: <span data-test="solution">{solution}</span>
+                </p>
+            }
 
             {
                 solution &&
